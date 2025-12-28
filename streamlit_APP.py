@@ -21,7 +21,7 @@ session = cnx.session()
 NAME_ON_ORDER = st.text_input("NAME ON SMOOTHIE")
 st.write("The name on your smoothie is ", NAME_ON_ORDER)
 my_dataframe = session.table("smoothies.public.fruit_options").select (col('fruit_name'), col('SEARCH_ON'))
-st.dataframe(data=my_dataframe, use_container_width=True)
+st.dataframe(data=my_dataframe, width='stretch' #use_container_width=True)
 st.stop()
 
 
