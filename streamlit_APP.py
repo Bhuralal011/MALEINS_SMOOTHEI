@@ -52,7 +52,7 @@ if ingredients_list:
         sf_df = pd.DataFrame([data])
     
         st.dataframe(sf_df, width="stretch")
-st.write(INGREDIENTS_STRING)
+#st.write(INGREDIENTS_STRING)
 my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
         values ('""" + INGREDIENTS_STRING + """' ,'"""+ NAME_ON_ORDER +"""' )"""
 time_to_insert = st.button('submit order')
