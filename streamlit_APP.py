@@ -1,7 +1,7 @@
 # Import python packages
 import streamlit as st
 import requests
-# import pandas as pd
+import pandas as pd
 #from snowflake.snowpark.context import get_active_session
 # Write directly to the app
 st.title(f":cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
@@ -56,9 +56,9 @@ st.write(INGREDIENTS_STRING)
 my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
         values ('""" + INGREDIENTS_STRING + """' ,'"""+ NAME_ON_ORDER +"""' )"""
 time_to_insert = st.button('submit order')
-  if time_to_insert:
-        session.sql(my_insert_stmt).collect()
-        st.success('Your Smoothie is ordered!', icon="✅")
+if time_to_insert:
+    session.sql(my_insert_stmt).collect()
+    st.success('Your Smoothie is ordered!', icon="✅")
 
     
     
