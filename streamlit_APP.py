@@ -56,7 +56,9 @@ if ingredients_list:
         )
        data = smootheifroot_response.json()      # dict
        sf_df = pd.DataFrame([data])   # REAL DataFrame
-       st.dataframe(sf_df, width = 'stretch')
+       # st.dataframe(sf_df, width = 'stretch')
+       st.dataframe(sf_df, width='stretch')
+
     
        st.write(INGREDIENTS_STRING) 
 
