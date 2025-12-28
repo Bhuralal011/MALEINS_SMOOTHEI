@@ -4,7 +4,6 @@ import streamlit as st
 
 
 
-
 # Write directly to the app
 st.title(f":cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
 st.write(
@@ -46,11 +45,7 @@ if ingredients_list:
 
     # st.write(my_insert_stmt)
     # st.stop()
-import requests
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-st.text(smoothiefroot_response.json())
 
-#sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
     time_to_insert = st.button('submit order')
     if time_to_insert:
@@ -58,7 +53,11 @@ st.text(smoothiefroot_response.json())
         st.success('Your Smoothie is ordered!', icon="✅")
     
 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response.json())
 
+#sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
 
 
