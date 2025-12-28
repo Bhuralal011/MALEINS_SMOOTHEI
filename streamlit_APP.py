@@ -18,20 +18,19 @@ from snowflake.snowpark.functions import col
 cnx = st.connection("snowflake")
 session = cnx.session()
 #session = get_active_session()
-NAME_ON_ORDER = st.text_input("NAME ON SMOOTHIE")
-st.write("The name on your smoothie is ", NAME_ON_ORDER)
+
 my_dataframe = session.table("smoothies.public.fruit_options").select (col('fruit_name'), col('SEARCH_ON'))
 # st.dataframe(data=my_dataframe, use_container_width=True)
 # st.stop()
 # convert the snowpark dataframe to a pandas dataframe so we can use the loc functtion
 pd_df = my_dataframe.to_pandas()
-st.dataframe(pd_df)
-st.stop()
+#st.dataframe(pd_df)
+#st.stop()
 
 
 
-# NAME_ON_ORDER = st.text_input("NAME ON SMOOTHIE")
-# st.write("The name on your smoothie is ", NAME_ON_ORDER)
+NAME_ON_ORDER = st.text_input("NAME ON SMOOTHIE")
+st.write("The name on your smoothie is ", NAME_ON_ORDER)
 
 
 ingredients_list = st.multiselect(
