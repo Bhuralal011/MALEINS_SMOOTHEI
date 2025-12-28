@@ -76,21 +76,21 @@ if ingredients_list:
     
 
 # import requests
-# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# #st.text(smoothiefroot_response.json())
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response.json())
 
-# sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
+sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
 
 
-smootheifroot_response = requests.get(
-    "https://my.smoothiefroot.com/api/fruit/watermelon"
-)
+# smootheifroot_response = requests.get(
+#     "https://my.smoothiefroot.com/api/fruit/watermelon"
+# )
 
-data = smootheifroot_response.json()      # dict
-sf_df = pd.DataFrame([data])   # REAL DataFrame
+# data = smootheifroot_response.json()      # dict
+# sf_df = pd.DataFrame([data])   # REAL DataFrame
 
-st.dataframe(sf_df, use_container_width=True)
+# st.dataframe(sf_df, use_container_width=True)
 
 
 
