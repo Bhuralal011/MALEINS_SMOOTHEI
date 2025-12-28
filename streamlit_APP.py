@@ -57,7 +57,7 @@ if ingredients_list:
        data = smootheifroot_response.json()      # dict
        sf_df = pd.DataFrame([data])   # REAL DataFrame
        st.dataframe(sf_df, width = 'stretch')
-      #(use_container_width=True)
+    
        st.write(INGREDIENTS_STRING) 
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
