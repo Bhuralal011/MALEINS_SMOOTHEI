@@ -5,25 +5,6 @@ import streamlit as st
 
 
 
-
-
-# import requests
-# import pandas as pd
-
-# #url = "https://my.smoothiefroot.com/api/fruit/watermelon"
-# url = "https://my.smoothiefroot.com/api/fruit/watermelon"
-# response = requests.get(url)
-
-# data = response.json()        # ✅ CALL method
-# df = pd.DataFrame(data)       # ✅ Convert to DataFrame
-
-# print(df.head())
-
-
-
-#sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
-
-
 # Write directly to the app
 st.title(f":cup_with_straw: Customize Your Smoothie!:cup_with_straw:")
 st.write(
@@ -67,9 +48,9 @@ if ingredients_list:
     # st.stop()
 import requests
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-#st.text(smoothiefroot_response.json())
+st.text(smoothiefroot_response.json())
 
-sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
+#sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
     time_to_insert = st.button('submit order')
     if time_to_insert:
