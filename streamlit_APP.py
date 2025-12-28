@@ -2,21 +2,24 @@
 import streamlit as st
 #from snowflake.snowpark.context import get_active_session
 
-#
-# import requests
-# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# st.text(smoothiefroot_response.json())
 
 import requests
-import pandas as pd
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response.json())
 
-url = "https://my.smoothiefroot.com/api/fruit/watermelon"
-response = requests.get(url)
+#sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
-data = response.json()        # ✅ CALL method
-df = pd.DataFrame(data)       # ✅ Convert to DataFrame
+# import requests
+# import pandas as pd
 
-print(df.head())
+# #url = "https://my.smoothiefroot.com/api/fruit/watermelon"
+# url = "https://my.smoothiefroot.com/api/fruit/watermelon"
+# response = requests.get(url)
+
+# data = response.json()        # ✅ CALL method
+# df = pd.DataFrame(data)       # ✅ Convert to DataFrame
+
+# print(df.head())
 
 
 
