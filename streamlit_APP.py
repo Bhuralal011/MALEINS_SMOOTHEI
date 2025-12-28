@@ -1,7 +1,7 @@
 # Import python packages
 import streamlit as st
 import requests
-import pandas as pd
+# import pandas as pd
 #from snowflake.snowpark.context import get_active_session
 
 
@@ -38,119 +38,51 @@ ingredients_list = st.multiselect(
     my_dataframe,
     max_selections = 5
  )
-# if ingredients_list:
-#     # st.write(ingredients_list)
-#     # st.text(ingredients_list)
-
-#     INGREDIENTS_STRING = ' '
-
-#     # for fruit_chosen in ingredients_list:
-#     #    INGREDIENTS_STRING += fruit_chosen + ' '
-      
-#     #    search_on=pd_df.loc[pd_df['FRUIT_NAME'] == fruit_chosen, 'SEARCH_ON'].iloc[0]
-#     #    st.write('The search value for ', fruit_chosen,' is ', search_on, '.')
-      
-#     #    st.subheader(fruit_chosen +' '+ '  Nutrition Information')
-#     #    smootheifroot_response = requests.get(
-#     #    "https://my.smoothiefroot.com/api/fruit/watermelon" + fruit_chosen
-#     #     )
-#     #    data = smootheifroot_response.json()      # dict
-#     #    sf_df = pd.DataFrame([data])   # REAL DataFrame
-#     #    st.dataframe(sf_df, use_container_width=True)
-#     for fruit_chosen in ingredients_list:
-#         INGREDIENTS_STRING += fruit_chosen + ' '
-    
-#         search_on = pd_df.loc[
-#             pd_df['FRUIT_NAME'] == fruit_chosen,
-#             'SEARCH_ON'
-#         ].iloc[0]
-    
-#         st.write(
-#             'The search value for ',
-#             fruit_chosen,
-#             ' is ',
-#             search_on,
-#             '.'
-#         )
-    
-#         st.subheader(fruit_chosen + ' Nutrition Information')
-    
-#         response = requests.get(
-#             "https://my.smoothiefroot.com/api/fruit/" + search_on
-#         )
-    
-#         data = response.json()
-#         sf_df = pd.DataFrame([data])
-    
-#         st.dataframe(sf_df, width="stretch")
-
-# st.write(INGREDIENTS_STRING)
-
-    
-      
-#  my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
-#         values ('""" + INGREDIENTS_STRING + """' ,'"""+ NAME_ON_ORDER +"""' )"""
-
-#     # st.write(my_insert_stmt)
-#     # st.stop()
-
-
-#  time_to_insert = st.button('submit order')
-#     if time_to_insert:
-#         session.sql(my_insert_stmt).collect()
-#         st.success('Your Smoothie is ordered!', icon="✅")
 if ingredients_list:
+   
 
-    INGREDIENTS_STRING = ''
-
+    INGREDIENTS_STRING = ' '
     for fruit_chosen in ingredients_list:
         INGREDIENTS_STRING += fruit_chosen + ' '
-
+    
         search_on = pd_df.loc[
             pd_df['FRUIT_NAME'] == fruit_chosen,
             'SEARCH_ON'
         ].iloc[0]
-
+    
+        st.write(
+            'The search value for ',
+            fruit_chosen,
+            ' is ',
+            search_on,
+            '.'
+        )
+    
         st.subheader(fruit_chosen + ' Nutrition Information')
-
+    
         response = requests.get(
             "https://my.smoothiefroot.com/api/fruit/" + search_on
         )
-
+    
         data = response.json()
         sf_df = pd.DataFrame([data])
+    
         st.dataframe(sf_df, width="stretch")
 
-    # ✅ OUTSIDE the loop
-    st.write(INGREDIENTS_STRING)
-
-    my_insert_stmt = f"""
-        INSERT INTO smoothies.public.orders (ingredients, NAME_ON_ORDER)
-        VALUES ('{INGREDIENTS_STRING}', '{NAME_ON_ORDER}')
-    """
-
-    time_to_insert = st.button('submit order')
+st.write(INGREDIENTS_STRING)
+my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
+        values ('""" + INGREDIENTS_STRING + """' ,'"""+ NAME_ON_ORDER +"""' )"""
+time_to_insert = st.button('submit order')
     if time_to_insert:
         session.sql(my_insert_stmt).collect()
         st.success('Your Smoothie is ordered!', icon="✅")
+
+    
     
 
-# # import requests
-# smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# st.text(smoothiefroot_response.json())
-
-# sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
 
 
-# smootheifroot_response = requests.get(
-#     "https://my.smoothiefroot.com/api/fruit/watermelon"
-# )
-
-# data = smootheifroot_response.json()      # dict
-# sf_df = pd.DataFrame([data])   # REAL DataFrame
-
-# st.dataframe(sf_df, use_container_width=True)
 
 
 
