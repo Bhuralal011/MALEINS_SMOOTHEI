@@ -55,7 +55,7 @@ if ingredients_list:
        "https://my.smoothiefroot.com/api/fruit/watermelon" + fruit_chosen
         )
        data = smootheifroot_response.json()      # dict
-       sf_df = pd.DataFrame([data])   # REAL DataFrame
+       pd_df = pd.DataFrame([data])   # REAL DataFrame
        st.dataframe(sf_df, use_container_width=True)
        st.write(INGREDIENTS_STRING) 
 
@@ -85,9 +85,9 @@ smootheifroot_response = requests.get(
 )
 
 data = smootheifroot_response.json()      # dict
-sf_df = pd.DataFrame([data])   # REAL DataFrame
+pd_df = pd.DataFrame([data])   # REAL DataFrame
 
-st.dataframe(sf_df, use_container_width=True)
+st.dataframe(pd_df, use_container_width=True)
 
 
 
