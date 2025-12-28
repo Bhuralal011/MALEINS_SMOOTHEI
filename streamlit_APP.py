@@ -45,8 +45,8 @@ if ingredients_list:
        "https://my.smoothiefroot.com/api/fruit/watermelon" + fruit_chosen
         )
        data = smootheifroot_response.json()      # dict
-       df = pd.DataFrame([data])   # REAL DataFrame
-       st.dataframe(df, use_container_width=True)
+       sf_df = pd.DataFrame([data])   # REAL DataFrame
+       st.dataframe(sf_df, use_container_width=True)
        st.write(INGREDIENTS_STRING) 
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
@@ -70,14 +70,14 @@ if ingredients_list:
 
 
 
-smootheifroot_response = requests.get(
-    "https://my.smoothiefroot.com/api/fruit/watermelon"
-)
+# smootheifroot_response = requests.get(
+#     "https://my.smoothiefroot.com/api/fruit/watermelon"
+# )
 
-data = smootheifroot_response.json()      # dict
-df = pd.DataFrame([data])   # REAL DataFrame
+# data = smootheifroot_response.json()      # dict
+# df = pd.DataFrame([data])   # REAL DataFrame
 
-st.dataframe(df, use_container_width=True)
+# st.dataframe(df, use_container_width=True)
 
 
 
