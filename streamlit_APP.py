@@ -88,8 +88,7 @@ st.write(INGREDIENTS_STRING)
 
     
       
-
-    my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
+my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
             values ('""" + INGREDIENTS_STRING + """' ,'"""+ NAME_ON_ORDER +"""' )"""
 
     # st.write(my_insert_stmt)
