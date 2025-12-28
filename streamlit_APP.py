@@ -1,5 +1,7 @@
 # Import python packages
 import streamlit as st
+import requests
+import pandas as pd
 #from snowflake.snowpark.context import get_active_session
 
 
@@ -38,6 +40,10 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
        INGREDIENTS_STRING += fruit_chosen + ' '
+       smootheifroot_response = requests.get(
+    "https://my.smoothiefroot.com/api/fruit/watermelon"
+)
+       st.dataframe(df, use_container_width=True)
     st.write(INGREDIENTS_STRING) 
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
@@ -59,15 +65,13 @@ if ingredients_list:
 
 # sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
 
-import requests
-import pandas as pd
-import streamlit as st
 
-response = requests.get(
+
+smootheifroot_response = requests.get(
     "https://my.smoothiefroot.com/api/fruit/watermelon"
 )
 
-data = response.json()      # dict
+data = smootheifroot_response.json()      # dict
 df = pd.DataFrame([data])   # REAL DataFrame
 
 st.dataframe(df, use_container_width=True)
