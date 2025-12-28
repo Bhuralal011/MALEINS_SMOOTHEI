@@ -8,11 +8,16 @@ import streamlit as st
 # st.text(smoothiefroot_response.json())
 
 import requests
+import pandas as pd
 
-response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-print(type(response))
-print(response.status_code)
-print(response.json())
+url = "https://my.smoothiefroot.com/api/fruit/watermelon"
+response = requests.get(url)
+
+data = response.json()        # ✅ CALL method
+df = pd.DataFrame(data)       # ✅ Convert to DataFrame
+
+print(df.head())
+
 
 
 #sf_df = st.dataframe(data=smoothiefroot_response.json() , use_container_width=True)
