@@ -40,13 +40,13 @@ if ingredients_list:
 
     for fruit_chosen in ingredients_list:
        INGREDIENTS_STRING += fruit_chosen + ' '
-       # st.subheader(fruit_chosen + 'Nutrition Information')
-       # smootheifroot_response = requests.get(
-       # "https://my.smoothiefroot.com/api/fruit/watermelon" + fruit_chosen
-       #  )
-       # data = smootheifroot_response.json()      # dict
-       # sf_df = pd.DataFrame([data])   # REAL DataFrame
-       # st.dataframe(sf_df, use_container_width=True)
+       st.subheader(fruit_chosen + 'Nutrition Information')
+       smootheifroot_response = requests.get(
+       "https://my.smoothiefroot.com/api/fruit/watermelon" + fruit_chosen
+        )
+       data = smootheifroot_response.json()      # dict
+       sf_df = pd.DataFrame([data])   # REAL DataFrame
+       st.dataframe(sf_df, use_container_width=True)
        st.write(INGREDIENTS_STRING) 
 
     my_insert_stmt = """ insert into smoothies.public.orders(ingredients , NAME_ON_ORDER)
