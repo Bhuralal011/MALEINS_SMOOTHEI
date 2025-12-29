@@ -28,17 +28,52 @@ INGREDIENTS_STRING = ""
 if ingredients_list:
     INGREDIENTS_STRING = ", ".join(ingredients_list)  # comma-separated list
     for fruit_chosen in ingredients_list:
-        search_on = pd_df.loc[
-            pd_df['FRUIT_NAME'] == fruit_chosen,
-            'SEARCH_ON'
-        ].iloc[0]
+    search_on = pd_df.loc[
+        pd_df['FRUIT_NAME'] == fruit_chosen,
+        'SEARCH_ON'
+    ].iloc[0]
 
-        st.write(f"The search value for {fruit_chosen} is {search_on}.")
-        st.subheader(fruit_chosen + " Nutrition Information")
-        response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
+    st.write(f"The search value for {fruit_chosen} is {search_on}.")
+    st.subheader(f"{fruit_chosen} Nutrition Information")
+
+    response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
+
+    if response.status_code == 200:
         data = response.json()
-        sf_df = pd.DataFrame([data])
-        st.dataframe(sf_df, width="stretch")
+
+        nutrition_rows = []
+        for nutrient, value in data["nutritions"].items():
+            nutrition_rows.append({
+                "nutrient": nutrient,
+                "family": data["family"],
+                "genus": data["genus"],
+                "id": data["id"],
+                "name": data["name"],
+                "nutrition": value,
+                "order": data["order"]
+            })
+
+        sf_df = pd.DataFrame(nutrition_rows)
+        st.dataframe(sf_df, use_container_width=True)
+    else:
+        st.error(f"{fruit_chosen} not found in database.")
+
+    # for fruit_chosen in ingredients_list:
+    #     search_on = pd_df.loc[
+    #         pd_df['FRUIT_NAME'] == fruit_chosen,
+    #         'SEARCH_ON'
+    #     ].iloc[0]
+
+    #     st.write(f"The search value for {fruit_chosen} is {search_on}.")
+    #     st.subheader(fruit_chosen + " Nutrition Information")
+    #     response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
+    #     data = response.json()
+        # sf_df = pd.DataFrame([data])
+        # st.dataframe(sf_df, width="stretch")
+      
+
+
+
 
 st.write("Ingredients selected: ", INGREDIENTS_STRING)
 
