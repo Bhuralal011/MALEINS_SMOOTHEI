@@ -44,7 +44,6 @@ if ingredients_list:
 sf_df = pd.DataFrame()
   
 
-st.write("Ingredients selected: ", INGREDIENTS_STRING)
 
 # --- Insert Order into Snowflake ---
 if st.button("Submit Order"):
