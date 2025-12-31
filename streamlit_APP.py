@@ -19,47 +19,30 @@ st.write("The name on your smoothie is ", NAME_ON_ORDER)
 
 ingredients_list = st.multiselect(
     "Choose up to 5 ingredients",
-    pd_df['FRUIT_NAME'].tolist(),
+    my_dataframe,
     max_selections=5
 )
 
 # --- Initialize INGREDIENTS_STRING safely ---
-INGREDIENTS_STRING = ""
+
 if ingredients_list:
-    INGREDIENTS_STRING = ", ".join(ingredients_list)  # comma-separated list
+    INGREDIENTS_STRING = ""
+    
     for fruit_chosen in ingredients_list:
+        INGREDIENTS_STRING = fruit_chosen + ' '
         search_on = pd_df.loc[
             pd_df['FRUIT_NAME'] == fruit_chosen,
             'SEARCH_ON'
         ].iloc[0]
-
-        # st.write(f"The search value for {fruit_chosen} is {search_on}.")
-        st.subheader(f"{fruit_chosen} Nutrition Information")
+        #st.write(f"The search value for {fruit_chosen} is {search_on}.")
+        st.subheader(fruit_chosen + 'Nutrition Infomation')
     
         response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
 
         sf_df = st.dataframe(data=response.json(), width=True)
 
 sf_df = pd.DataFrame()
-    # if response.status_code == 200:
-    #     data = response.json()
-
-    #     nutrition_rows = []
-    #     for nutrient, value in data["nutritions"].items():
-    #         nutrition_rows.append({
-    #             "nutrient": nutrient,
-    #             "family": data["family"],
-    #             "genus": data["genus"],
-    #             "id": data["id"],
-    #             "name": data["name"],
-    #             "nutrition": value,
-    #             "order": data["order"]
-    #         })
-
-    #     sf_df = pd.DataFrame(nutrition_rows)
-    #     st.dataframe(sf_df, use_container_width=True)
-    # else:
-    #     st.error(f"{fruit_chosen} not found in database.")
+  
 
 st.write("Ingredients selected: ", INGREDIENTS_STRING)
 
