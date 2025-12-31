@@ -38,8 +38,9 @@ if ingredients_list:
     
         response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
 
-        st.dataframe(sf_df, width=True)
+        sf_df = st.dataframe(data=response.json(), width=True)
 
+sf_df = pd.DataFrame()
     # if response.status_code == 200:
     #     data = response.json()
 
