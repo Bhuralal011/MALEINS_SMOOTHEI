@@ -42,7 +42,7 @@ if ingredients_list:
         data = response.json()
 
         nutrition_rows = []
-        for nutrient, value in data["nutrition"].items():
+        for nutrient, value in data["nutritions"].items():
             nutrition_rows.append({
                 "nutrient": nutrient,
                 "family": data["family"],
