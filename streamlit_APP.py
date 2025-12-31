@@ -38,20 +38,20 @@ if ingredients_list:
     
         response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
 
-    if response.status_code == 200:
-        data = response.json()
+    # if response.status_code == 200:
+    #     data = response.json()
 
-        nutrition_rows = []
-        for nutrient, value in data["nutritions"].items():
-            nutrition_rows.append({
-                "nutrient": nutrient,
-                "family": data["family"],
-                "genus": data["genus"],
-                "id": data["id"],
-                "name": data["name"],
-                "nutrition": value,
-                "order": data["order"]
-            })
+    #     nutrition_rows = []
+    #     for nutrient, value in data["nutritions"].items():
+    #         nutrition_rows.append({
+    #             "nutrient": nutrient,
+    #             "family": data["family"],
+    #             "genus": data["genus"],
+    #             "id": data["id"],
+    #             "name": data["name"],
+    #             "nutrition": value,
+    #             "order": data["order"]
+    #         })
 
         sf_df = pd.DataFrame(nutrition_rows)
         st.dataframe(sf_df, use_container_width=True)
