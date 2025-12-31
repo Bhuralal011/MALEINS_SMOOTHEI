@@ -26,7 +26,7 @@ ingredients_list = st.multiselect(
 # --- Initialize INGREDIENTS_STRING safely ---
 
 if ingredients_list:
-    INGREDIENTS_STRING = ""
+    INGREDIENTS_STRING = " "
     
     for fruit_chosen in ingredients_list:
         INGREDIENTS_STRING = fruit_chosen + ' '
@@ -44,7 +44,7 @@ if ingredients_list:
 sf_df = pd.DataFrame()
   
 
-
+st.write("Ingredients selected: ", INGREDIENTS_STRING)
 # --- Insert Order into Snowflake ---
 if st.button("Submit Order"):
     if NAME_ON_ORDER and INGREDIENTS_STRING:
