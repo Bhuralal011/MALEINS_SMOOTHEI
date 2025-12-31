@@ -33,10 +33,12 @@ if ingredients_list:
             'SEARCH_ON'
         ].iloc[0]
 
-        st.write(f"The search value for {fruit_chosen} is {search_on}.")
+        # st.write(f"The search value for {fruit_chosen} is {search_on}.")
         st.subheader(f"{fruit_chosen} Nutrition Information")
     
         response = requests.get(f"https://my.smoothiefroot.com/api/fruit/{search_on}")
+
+        st.dataframe(sf_df, use_container_width=True)
 
     # if response.status_code == 200:
     #     data = response.json()
@@ -53,10 +55,10 @@ if ingredients_list:
     #             "order": data["order"]
     #         })
 
-        sf_df = pd.DataFrame(nutrition_rows)
-        st.dataframe(sf_df, use_container_width=True)
-    else:
-        st.error(f"{fruit_chosen} not found in database.")
+    #     sf_df = pd.DataFrame(nutrition_rows)
+    #     st.dataframe(sf_df, use_container_width=True)
+    # else:
+    #     st.error(f"{fruit_chosen} not found in database.")
 
 st.write("Ingredients selected: ", INGREDIENTS_STRING)
 
